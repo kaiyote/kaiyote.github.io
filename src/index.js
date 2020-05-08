@@ -1,22 +1,26 @@
-import { createGlobalStyle } from 'styled-components/macro'
+import useSSRStyles from './hooks/useSSRStyles'
+import App from './App'
 
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
-    font-weight: 400;
-  }
+const theme = {
+  primary: '#263238',
+  primaryLight: '#4f5b62',
+  primaryDark: '#000a12',
+  primaryText: '#fff',
+  secondary: '#fff',
+  secondaryLight: '#fff',
+  secondaryDark: '#ccc',
+  secondaryText: '#000'
+}
 
-  h1 {
-    text-align: center;
-  }
-`
+const Root = () => {
+  const ssrNode = useSSRStyles(App, { theme })
 
-const App = () =>
-  <>
-    <GlobalStyle />
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
-  </>
+  return (
+    <>
+      {ssrNode}
+      <App theme={theme} />
+    </>
+  )
+}
 
-export default App
+export default Root

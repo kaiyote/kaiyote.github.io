@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build",
+    "build": "preact build --template ./template.html",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"
@@ -27,8 +27,10 @@
     "sirv-cli": "^0.4.5"
   },
   "dependencies": {
+    "lodash": "^4.17.15",
     "preact": "^10.1.0",
     "preact-render-to-string": "^5.1.2",
+    "prop-types": "^15.7.2",
     "styled-components": "^5.1.0"
   },
   "babelMacros": {
