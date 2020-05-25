@@ -7,9 +7,9 @@ const ScrollHeader = () =>
       <div>
         <Logo src='icon.png' />
         <ul>
-          <li>home</li>
           <li>about</li>
           <li>github</li>
+          <li>top</li>
         </ul>
       </div>
     </Header>

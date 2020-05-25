@@ -18,6 +18,23 @@ const Header = styled.header`
     width: 50vw;
     min-width: 800px;
   }
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline-flex;
+    margin: 0 10px;
+
+    .headroom--unfixed &:last-child {
+      display: none;
+    }
+  }
 `
 
 const Logo = styled.img`
