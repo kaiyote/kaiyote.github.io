@@ -7,32 +7,39 @@
     "build": "preact build --template ./template.html",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "lint:css": "stylelint src"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.7.0",
-    "@testing-library/preact": "^1.0.2",
-    "copy-webpack-plugin": "^5.1.1",
-    "eslint": "^6.8.0",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/preact": "^2.0.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "eslint": "^7.3.1",
     "eslint-config-preact": "^1.1.1",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest-dom": "^2.1.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest-dom": "^3.0.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-testing-library": "^3.1.0",
-    "preact-cli": "^3.0.0-rc.6",
-    "sirv-cli": "^0.4.5"
+    "eslint-plugin-testing-library": "^3.3.1",
+    "preact-cli": "^3.0.0-rc.16",
+    "sirv-cli": "^1.0.3",
+    "stylelint": "^13.6.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-order": "^4.1.0",
+    "stylelint-processor-styled-components": "^1.10.0"
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "preact": "^10.1.0",
-    "preact-render-to-string": "^5.1.2",
+    "preact": "^10.4.5",
+    "preact-render-to-string": "^5.1.9",
     "prop-types": "^15.7.2",
     "react-headroom": "^3.0.0",
-    "styled-components": "^5.1.0"
+    "react-markdown": "^4.3.1",
+    "styled-components": "^5.1.1"
   },
   "babelMacros": {
     "styledComponents": {
