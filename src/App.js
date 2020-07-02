@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components/macro'
 import { GlobalStyle } from './App.styles'
-import ScrollHeader from './components/ScrollHeader'
+import { Burger, Menu } from './components'
 
 const App = ({ theme }) =>
   <ThemeProvider theme={theme}>
     <GlobalStyle />
-    <ScrollHeader />
+    <Burger />
+    <Menu />
     <div>
       <h1>Hello, World!</h1>
     </div>
