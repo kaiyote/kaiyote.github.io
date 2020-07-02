@@ -2,27 +2,26 @@ import styled from 'styled-components/macro'
 
 export const StyledMenu = styled.nav`
   background: ${({ theme }) => theme.primaryLight};
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: flex-start;
   left: 0;
-  padding: 2rem;
+  padding: 4rem 2rem 2rem;
   position: absolute;
-  text-align: left;
+  text-align: center;
   top: 0;
+  transform: translateX(${({ open }) => open ? 0 : -100}%);
   transition: transform 0.3s ease-in-out;
-
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-    width: 100%;
-  }
+  width: ${({ mobile }) => mobile ? '100vw' : 'auto'};
 
   a {
-    color: ${({ theme }) => theme.primaryDark};
-    font-size: 2rem;
+    color: ${({ theme }) => theme.primaryText};
+    font-size: ${({ mobile }) => mobile ? 1.5 : 2}rem;
     font-weight: bold;
     letter-spacing: 0.5rem;
-    padding: 2rem 0;
+    margin: 2rem 0;
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.3s linear;

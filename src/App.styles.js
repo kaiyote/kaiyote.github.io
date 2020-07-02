@@ -1,13 +1,12 @@
-import { createGlobalStyle } from 'styled-components/macro'
+import styled, { createGlobalStyle } from 'styled-components/macro'
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   html,
   body {
-    background-color: ${props => props.theme.secondaryDark};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.secondaryText};
     font: 14px/1.21 'Fira Sans', sans-serif;
     font-weight: 400;
-    height: 3000px;
     margin: 0;
   }
 
@@ -16,4 +15,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export { GlobalStyle }
+export const Body = styled.div`
+  display: ${({ menuMargin }) => menuMargin ? 'block' : 'none'};
+  margin-left: ${({ shifted, menuMargin }) => shifted ? menuMargin : 0};
+  transition: margin-left 0.3s ease-in-out;
+`

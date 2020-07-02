@@ -11,7 +11,7 @@ export const BurgerWrapper = styled.button`
   left: 2em;
   padding: 0;
   position: absolute;
-  top: 5%;
+  top: 2em;
   width: 2rem;
   z-index: 10;
 
@@ -20,12 +20,25 @@ export const BurgerWrapper = styled.button`
   }
 
   div {
-    background: ${({ theme }) => theme.primaryLight};
+    background: ${({ theme, open }) => open ? theme.secondary : theme.primaryDark};
     border-radius: 10px;
     height: 0.25rem;
     position: relative;
     transform-origin: 1px;
     transition: all 0.3s linear;
     width: 2rem;
+
+    :first-child {
+      transform: rotate(${({ open }) => open ? 45 : 0}deg);
+    }
+
+    :nth-child(2) {
+      opacity: ${({ open }) => open ? 0 : 1};
+      transform: translateX(${({ open }) => open ? 20 : 0}px);
+    }
+
+    :last-child {
+      transform: rotate(${({ open }) => open ? -45 : 0}deg);
+    }
   }
 `

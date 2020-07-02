@@ -1,15 +1,17 @@
-import useSSRStyles from './hooks/useSSRStyles'
-import App from './App'
+import { useSSRStyles } from '~/hooks'
+import App from '~/App'
 
 const theme = {
   primary: '#263238',
   primaryLight: '#4f5b62',
   primaryDark: '#000a12',
   primaryText: '#fff',
-  secondary: '#fff',
+  secondary: '#eceff1',
   secondaryLight: '#fff',
-  secondaryDark: '#ccc',
-  secondaryText: '#000'
+  secondaryDark: '#babdbe',
+  secondaryText: '#000',
+  primaryHover: '#ef9a9a',
+  secondaryHover: '#ec407a'
 }
 
 const Root = () => {
