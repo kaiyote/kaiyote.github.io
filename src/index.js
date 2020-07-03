@@ -1,22 +1,18 @@
-import { createGlobalStyle } from 'styled-components/macro'
+import App from '~/App'
 
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
-    font-weight: 400;
-  }
+const theme = {
+  primary: '#263238',
+  primaryLight: '#4f5b62',
+  primaryDark: '#000a12',
+  primaryText: '#fff',
+  secondary: '#eceff1',
+  secondaryLight: '#fff',
+  secondaryDark: '#babdbe',
+  secondaryText: '#000',
+  primaryHover: '#ef9a9a',
+  secondaryHover: '#ec407a'
+}
 
-  h1 {
-    text-align: center;
-  }
-`
+const Root = () => <App theme={theme} />
 
-const App = () =>
-  <>
-    <GlobalStyle />
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
-  </>
-
-export default App
+export default Root
