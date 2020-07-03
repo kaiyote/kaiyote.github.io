@@ -33,7 +33,6 @@
     "stylelint-processor-styled-components": "^1.10.0"
   },
   "dependencies": {
-    "lodash": "^4.17.15",
     "markdown-to-jsx": "^6.11.4",
     "mobile-detect": "^1.4.4",
     "preact": "^10.4.5",
