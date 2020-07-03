@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --template ./template.html",
+    "build": "preact build",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src",
@@ -38,7 +38,6 @@
     "preact": "^10.4.5",
     "preact-render-to-string": "^5.1.9",
     "prop-types": "^15.7.2",
-    "react-headroom": "^3.0.0",
     "react-markdown": "^4.3.1",
     "styled-components": "^5.1.1"
   },

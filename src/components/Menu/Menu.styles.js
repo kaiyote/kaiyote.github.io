@@ -12,13 +12,13 @@ export const StyledMenu = styled.nav`
   position: absolute;
   text-align: center;
   top: 0;
-  transform: translateX(${({ open }) => open ? 0 : -100}%);
+  transform: translateX(${({ isOpen }) => isOpen ? 0 : -100}%);
   transition: transform 0.3s ease-in-out;
-  width: ${({ mobile }) => mobile ? '100vw' : 'auto'};
+  width: ${({ isMobile }) => isMobile ? '100vw' : 'auto'};
 
   a {
     color: ${({ theme }) => theme.primaryText};
-    font-size: ${({ mobile }) => mobile ? 1.5 : 2}rem;
+    font-size: ${({ isMobile }) => isMobile ? 1.5 : 2}rem;
     font-weight: bold;
     letter-spacing: 0.5rem;
     margin: 2rem 0;

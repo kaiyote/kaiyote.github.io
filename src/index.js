@@ -1,4 +1,3 @@
-import { useSSRStyles } from '~/hooks'
 import App from '~/App'
 
 const theme = {
@@ -14,15 +13,6 @@ const theme = {
   secondaryHover: '#ec407a'
 }
 
-const Root = () => {
-  const ssrNode = useSSRStyles(App, { theme })
-
-  return (
-    <>
-      {ssrNode}
-      <App theme={theme} />
-    </>
-  )
-}
+const Root = () => <App theme={theme} />
 
 export default Root

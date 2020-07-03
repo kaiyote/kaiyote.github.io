@@ -5,8 +5,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.secondaryText};
-    font: 14px/1.21 'Fira Sans', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 14px;
     font-weight: 400;
+    line-height: 1.21;
     margin: 0;
   }
 
@@ -17,6 +19,6 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Body = styled.div`
   display: ${({ menuMargin }) => menuMargin ? 'block' : 'none'};
-  margin-left: ${({ shifted, menuMargin }) => shifted ? menuMargin : 0};
+  margin-left: ${({ isShifted, menuMargin }) => isShifted ? menuMargin : 0};
   transition: margin-left 0.3s ease-in-out;
 `
