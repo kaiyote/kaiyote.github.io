@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 export default config => {
@@ -7,5 +6,4 @@ export default config => {
       { context: `${__dirname}/assets`, from: '*.*' }
     ]
   }))
-  config.resolve.alias['~'] = resolve(__dirname, 'src')
 }

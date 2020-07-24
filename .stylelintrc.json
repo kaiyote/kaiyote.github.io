@@ -11,5 +11,6 @@
   ],
   "rules": {
     "order/properties-alphabetical-order": true
-  }
+  },
+  "ignoreFiles": "src/template.html"
 }

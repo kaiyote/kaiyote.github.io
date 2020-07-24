@@ -1,6 +1,11 @@
 import styled from 'styled-components/macro'
 
-export const BurgerWrapper = styled.button`
+export interface BurgerProps {
+  isOpen: boolean
+  onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) & ((e: Event) => void)
+}
+
+export const BurgerWrapper = styled.button<BurgerProps>`
   background: transparent;
   border: none;
   cursor: pointer;

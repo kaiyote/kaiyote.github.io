@@ -17,8 +17,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 `
 
-export const Body = styled.div`
-  display: ${({ menuMargin }) => menuMargin ? 'block' : 'none'};
+interface BodyProps {
+  menuMargin: string
+  isShifted: boolean
+}
+
+export const Body = styled.div<BodyProps>`
+  display: ${({ menuMargin }) => menuMargin != null ? 'block' : 'none'};
   margin-left: ${({ isShifted, menuMargin }) => isShifted ? menuMargin : 0};
   transition: margin-left 0.3s ease-in-out;
 `
