@@ -2,7 +2,12 @@ import styled from 'styled-components/macro'
 
 export const MarkdownWrapper = styled.div``
 
-export const StyledMenu = styled.nav`
+export interface MenuProps {
+  isOpen: boolean
+  isMobile: boolean
+}
+
+export const StyledMenu = styled.nav<MenuProps>`
   background: ${({ theme }) => theme.primaryLight};
   box-sizing: border-box;
   display: flex;

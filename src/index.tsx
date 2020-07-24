@@ -1,6 +1,8 @@
-import App from '~/App'
+import { FunctionalComponent, h } from 'preact'
+import { DefaultTheme } from 'styled-components/macro'
+import App from './App'
 
-const theme = {
+const theme: DefaultTheme = {
   primary: '#263238',
   primaryLight: '#4f5b62',
   primaryDark: '#000a12',
@@ -13,6 +15,6 @@ const theme = {
   secondaryHover: '#ec407a'
 }
 
-const Root = () => <App theme={theme} />
+const Root: FunctionalComponent = () => <App theme={theme} />
 
 export default Root

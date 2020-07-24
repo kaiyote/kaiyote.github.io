@@ -1,10 +1,10 @@
 import Markdown from 'markdown-to-jsx'
+import { FunctionalComponent, h } from 'preact'
 import { forwardRef } from 'preact/compat'
-import PropTypes from 'prop-types'
-import { bio, links, name, pronouns } from '~/data'
-import { MarkdownWrapper, Separator, StyledMenu } from './Menu.styles'
+import { bio, links, name, pronouns } from '../../data'
+import { MarkdownWrapper, MenuProps, Separator, StyledMenu } from './Menu.styles'
 
-const Menu = forwardRef(({ isOpen, isMobile }, ref) =>
+const Menu: FunctionalComponent<MenuProps> = forwardRef<HTMLElement, MenuProps>(({ isOpen, isMobile }, ref) =>
   <StyledMenu {...{ isOpen, isMobile }} ref={ref}>
     <div>{name}</div>
     <small>{pronouns}</small>
@@ -18,8 +18,6 @@ const Menu = forwardRef(({ isOpen, isMobile }, ref) =>
   </StyledMenu>
 )
 
-Menu.propTypes = {
-  isOpen: PropTypes.bool,
-  isMobile: PropTypes.bool
-}
+Menu.displayName = 'Menu'
+
 export default Menu
