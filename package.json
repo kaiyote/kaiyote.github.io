@@ -43,12 +43,14 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "date-fns": "^2.15.0",
     "markdown-to-jsx": "^6.11.4",
     "mobile-detect": "^1.4.4",
     "preact": "^10.4.5",
     "preact-render-to-string": "^5.1.9",
     "prop-types": "^15.7.2",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "witch-clock": "^1.0.1"
   },
   "babelMacros": {
     "styledComponents": {

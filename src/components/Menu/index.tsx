@@ -2,6 +2,7 @@ import Markdown from 'markdown-to-jsx'
 import { FunctionalComponent, h } from 'preact'
 import { forwardRef } from 'preact/compat'
 import { bio, links, name, pronouns } from '../../data'
+import CelestialEvents from '../CelestialEvents'
 import { MarkdownWrapper, MenuProps, Separator, StyledMenu } from './Menu.styles'
 
 const Menu: FunctionalComponent<MenuProps> = forwardRef<HTMLElement, MenuProps>(({ isOpen, isMobile }, ref) =>
@@ -15,6 +16,7 @@ const Menu: FunctionalComponent<MenuProps> = forwardRef<HTMLElement, MenuProps>(
     <Separator />
     <div>Links:</div>
     {Object.entries(links).map(([k, v]) => <a key={k} href={v} target='_blank' rel='noreferrer'>{k}</a>)}
+    <CelestialEvents />
   </StyledMenu>
 )
 

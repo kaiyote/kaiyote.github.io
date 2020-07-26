@@ -9,6 +9,7 @@
     "noEmitHelpers": true,
     "importHelpers": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "typeRoots": ["./types", "./node_modules/@types"]
   }
 }
