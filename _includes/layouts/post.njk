@@ -13,6 +13,12 @@ layout: layouts/base.njk
 
 {{ content | safe }}
 
+<ul class="post-footnotes">
+  {%- for footnote in footnotes %}
+  <li>{{ footnote | safe }}</li>
+  {%- endfor %}
+</ul>
+
 {%- if collections.posts %}
 {%- set previousPost = collections.posts | getPreviousCollectionItem %}
 {%- set nextPost = collections.posts | getNextCollectionItem %}

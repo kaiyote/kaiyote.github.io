@@ -43,3 +43,7 @@ pre[class*="language-diff-"] {
   text-decoration: none; /* override del, ins, mark defaults */
   color: inherit; /* override del, ins, mark defaults */
 }
+
+.token.property, .token.tag, .token.constant, .token.symbol, .token.deleted {
+  color: #ff91b9;
+}

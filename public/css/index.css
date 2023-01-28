@@ -53,7 +53,7 @@ html {
   overflow-y: scroll;
 }
 body {
-  max-width: 40em;
+  max-width: 50em;
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -243,6 +243,19 @@ header {
 }
 .post-metadata time {
   margin-right: 1em;
+}
+
+.post-footnotes {
+  font-size: smaller;
+  position: relative;
+  padding-top: 1.5em;
+}
+
+.post-footnotes::before {
+  content: 'Footnotes';
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 /* Direct Links / Markdown Headers */

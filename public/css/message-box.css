@@ -7,12 +7,66 @@
   color: var(--color-gray-90);
   padding: 1em 0.625em; /* 16px 10px /16 */
 }
+
+.message-box.gpt {
+  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  color: #374151;
+  padding-left: 3em;
+  position: relative;
+}
+
+.message-box.question {
+  --color-message-box: #f9fafb;
+}
+
+.message-box.answer {
+  --color-message-box: #f3f4f6;
+}
+
 .message-box ol {
   margin-top: 0;
+}
+
+.message-box.gpt p:empty {
+  display: none;
+}
+
+.message-box.gpt .avatar {
+  position: absolute;
+  top: 1.75em;
+  left: 0.5em;
+  height: 28px;
+  width: 28px;
+}
+
+.message-box.gpt div.avatar {
+  background: #10a37f;
+  padding: 2px;
+}
+
+.message-box.gpt div.avatar svg {
+  width: 24px;
+  height: 24px;
+}
+
+.message-box.gpt ~ p:empty {
+  display: none;
 }
 
 @media (prefers-color-scheme: dark) {
   .message-box {
     --color-message-box: #082840;
+  }
+
+  .message-box.gpt {
+    color: #f3f4f6;
+  }
+
+  .message-box.question {
+    --color-message-box: #343541;
+  }
+
+  .message-box.answer {
+    --color-message-box: #434654;
   }
 }
