@@ -1,8 +1,6 @@
 # eleventy-base-blog v8
 
-A starter repository showing how to build a blog with the [Eleventy](https://www.11ty.dev/) site generator (using the [v2.0 beta release](https://www.11ty.dev/blog/eleventy-v2-beta/)).
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/802669dd-d5f8-4d49-963d-6d57b257c2a2/deploy-status)](https://app.netlify.com/sites/eleventy-base-blog/deploys)
+A personal blog built off of [eleventy-base-blog](https://github.com/11ty/eleventy-base-blog)
 
 ## Features
 
@@ -38,72 +36,6 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
   - `sitemap.xml`
   - Zero-maintenance tag pages ([View on the Demo](https://eleventy-base-blog.netlify.app/tags/))
   - Content not found (404) page
-
-## Demos
-
-- [Netlify](https://eleventy-base-blog.netlify.com/)
-- [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
-- [Remix on Glitch](https://glitch.com/~11ty-eleventy-base-blog)
-
-## Deploy this to your own site
-
-Deploy this Eleventy site in just a few clicks on these services:
-
-- [Get your own Eleventy web site on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)
-- If you run Eleventy locally you can drag your `_site` folder to [`drop.netlify.com`](https://drop.netlify.com/) to upload it without using `git`.
-- [Get your own Eleventy web site on Vercel](https://vercel.com/import/project?template=11ty%2Feleventy-base-blog)
-- Read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/) to the web.
-
-## Getting Started
-
-### 1. Clone this Repository
-
-```
-git clone https://github.com/11ty/eleventy-base-blog.git my-blog-name
-```
-
-### 2. Navigate to the directory
-
-```
-cd my-blog-name
-```
-
-Specifically have a look at `eleventy.config.js` to see if you want to configure any Eleventy options differently.
-
-### 3. Install dependencies
-
-```
-npm install
-```
-
-### 4. Edit `_data/metadata.json`
-
-### 5. Run Eleventy
-
-Generate a production-ready build:
-
-```
-npx @11ty/eleventy
-```
-
-Or build and host locally on a local development server:
-
-```
-npx @11ty/eleventy --serve
-```
-
-Or in [debug mode](https://www.11ty.dev/docs/debugging/) to see all the internals:
-
-```
-# Mac OS/Linux/etc
-DEBUG=Eleventy* npx @11ty/eleventy
-
-# Windows
-set DEBUG=Eleventy* & npx @11ty/eleventy
-
-# Windows (Powershell in VS Code)
-$env:DEBUG="Eleventy*"; npx @11ty/eleventy
-```
 
 ### Implementation Notes
 
