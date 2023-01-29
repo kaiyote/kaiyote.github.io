@@ -160,5 +160,3 @@ it to spit out what we want in a shape we desire.
 But the longer you think about it, the more you realize that if the person engineering the ChatGPT prompt to get correctly shaped output is already required to know what that correctly shaped
 output should look like to begin with, what even is the point of paying the person to spend hours/days/weeks engineering a prompt to get the computer to spit out the code, when they could likely
 write it themselves considerably faster, and with actual understanding of what they're doing?
-
-[^1]: https://sharegpt.com/c/w4jtuY4W
