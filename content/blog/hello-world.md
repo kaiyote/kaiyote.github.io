@@ -14,8 +14,6 @@ Get ChatGPT to write a component in lit, and then point and laugh at it.
 
 So, let's do just that:
 
-([This looks long and I just want the TL;DR;](#the-tl-dr))
-
 ## The Experiment
 {% gptQuestion %}
 Write a Lit component in Typescript that counts how many times it has been clicked and displays that.

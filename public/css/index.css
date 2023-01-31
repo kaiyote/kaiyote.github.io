@@ -249,6 +249,19 @@ header {
   margin-right: 1em;
 }
 
+.table-of-contents {
+  margin-top: 1em;
+}
+
+.table-of-contents h2 {
+  margin-bottom: 0;
+}
+
+.table-of-contents ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .post-footnotes {
   font-size: smaller;
   position: relative;
@@ -284,4 +297,12 @@ a[href].header-anchor:focus,
 
 h2 + .header-anchor {
   font-size: 1.5em;
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
 }
