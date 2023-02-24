@@ -1,7 +1,7 @@
 ---
 title: Hello World
 description: My first proper blog post on my first proper personal website, wherein I try to get ChatGPT to write correct code for a toy case, and it fails. Repeatedly.
-date: git Created
+date: 2023-01-28
 tags:
   - lit
   - chatgpt
