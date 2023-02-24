@@ -1,10 +1,11 @@
 ---
 title: Hello World
-description: My first proper blog post on my first proper personal website.
-date: git Last Modified
+description: My first proper blog post on my first proper personal website, wherein I try to get ChatGPT to write correct code for a toy case, and it fails. Repeatedly.
+date: git Created
 tags:
   - lit
   - chatgpt
+  - web-dev
 footnotes:
   - '<a href="https://sharegpt.com/c/w4jtuY4" target="_blank">The full transcript in all its headache inducing glory</a>'
 ---
@@ -15,12 +16,12 @@ Get ChatGPT to write a component in lit, and then point and laugh at it.
 So, let's do just that:
 
 ## The Experiment
-{% gptQuestion %}
+{% gpt "question" %}
 Write a Lit component in Typescript that counts how many times it has been clicked and displays that.
-{% endgptQuestion %}
-{% gptAnswer %}
+{% endgpt %}
+{% gpt "answer" %}
 {% renderTemplate "md" %}
-```ts
+```jsx
 import React, { useState } from 'react'
 
 interface Props {}
@@ -40,16 +41,16 @@ export default ClickCounter
 This is a basic example of a functional React component written in TypeScript. It uses the `useState` hook to keep track of the number of times the button has been clicked,
 and updates the count displayed on the button every time it is clicked.
 {% endrenderTemplate %}
-{% endgptAnswer %}
+{% endgpt %}
 
 So...... first things first. It spit out a `react` component when I asked for a `lit` component.
 Now, to be fair, I'm 90% positive that react component would do the thing I asked for the component to do.
 Just, in react. Which sort of belies the entire weakness of ChatGPT.
 
-{% gptQuestion %}
+{% gpt "question" %}
 I asked you to write a component in Lit
-{% endgptQuestion %}
-{% gptAnswer %}
+{% endgpt %}
+{% gpt "answer" %}
 {% renderTemplate "md" %}
 I apologize for the confusion, here's an example of a Lit component written in TypeScript that counts how many times it has been clicked and displays that:
 ```ts
@@ -71,7 +72,7 @@ class ClickCounter extends LitElement {
 This component uses the `@customElement` decorator to define the name of the custom element and the `@property` decorator to define a property for the count.
 The `render` method uses a template literal to create the button element and binds an event listener to the `click` event. The listener increments the count property each time the button is clicked.
 {% endrenderTemplate %}
-{% endgptAnswer %}
+{% endgpt %}
 
 After I corrected it, the next batch of code it spit out is, I believe, the only example (and there were more after the three I documented here)
 that would actually run "correctly", but there are still quite a number of issues here.
@@ -83,10 +84,10 @@ web-component boundary. However, this is not what I was after (and also isn't fu
 
 So, I offered more guidance towards my desired end goal.
 
-{% gptQuestion %}
+{% gpt "question" %}
 Why are you allowing `count` to be passed in from the outside? It is entirely internal to the component, wouldn't it be better to use `@state` instead?
-{% endgptQuestion %}
-{% gptAnswer %}
+{% endgpt %}
+{% gpt "answer" %}
 {% renderTemplate "md" %}
 You are correct, the `count` property should be internal state of the component and should not be passed in from the outside. In this case, it would be better to use the `@state` decorator instead of
 the `@property` decorator to define the `count` variable. The @state decorator will automatically handle the re-rendering and updating of the component when the state changes.
@@ -109,7 +110,7 @@ class ClickCounter extends LitElement {
 }
 ```
 {% endrenderTemplate %}
-{% endgptAnswer %}
+{% endgpt %}
 
 I corrected it again, and questioned whether or not `count` needed to be externally settable. Being the agreeable machine that it is, it acquiesed to my code review and produced a second
 version in lit that used the `@state` decorator for `count` to produce an internal reactive state instead of an external one. The problem here though (aside from it still using `lit-element`)
@@ -119,7 +120,7 @@ After this, I informed it that `lit-element` had been deprecated, and it cobbled
 but it entirely lost the reactive re-rendering that `lit` gives you for free. When I then pointed out that it could just be using the `lit` npm package and not have to mess with vanilla JS
 web-components, it spit out the last variant before I gave up.
 
-{% gptAnswer %}
+{% gpt "answer" %}
 {% renderTemplate "md" %}
 ```js
 import { Component, html } from 'lit'
@@ -142,7 +143,7 @@ class ClickCounter extends Component {
 customElements.define('click-counter', ClickCounter)
 ```
 {% endrenderTemplate %}
-{% endgptAnswer %}
+{% endgpt %}
 
 Here, it imports the non-existant `Component` class from `lit`, extends it, and entirely forgets about the decorators for `state` and `customElement`. These are easily imported from
 `'lit/decorators.js'`. Because `this.count` is no longer decorated by `@state` or `@property`, it is not reactive, so updating it in the click handler will not trigger a re-render.

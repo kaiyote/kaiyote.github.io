@@ -6,19 +6,12 @@ module.exports = eleventyConfig => {
 
   eleventyConfig.addPlugin(EleventyRenderPlugin)
 
-  eleventyConfig.addPairedShortcode('gptQuestion', function (content) {
-    return `
-      <div class="message-box gpt question">
-        ${questionAvatar}
-        ${content}
-      </div>
-    `
-  })
+  eleventyConfig.addPairedShortcode('gpt', function (content, type) {
+    const avatar = type === 'question' ? questionAvatar : answerAvatar
 
-  eleventyConfig.addPairedShortcode('gptAnswer', function (content) {
     return `
-      <div class="message-box gpt answer">
-        ${answerAvatar}
+      <div class="message-box gpt ${type}">
+        ${avatar}
         ${content}
       </div>
     `

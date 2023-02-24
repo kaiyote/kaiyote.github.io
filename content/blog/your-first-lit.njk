@@ -1,0 +1,58 @@
+---
+title: Building a Simple Lit Component
+description: Lets walk through building a simple Lit component, perhaps even the one I asked ChatGPT to write in the previous post, and cover all the basics of why I like Lit.
+date: git Created
+tags:
+  - lit
+  - web-components
+  - web-dev
+draft: true
+playground: true
+---
+{% renderTemplate 'md' %}
+So, you think you want to get into Lit, but diving into a whole new framework feels like effort, and you just wish someone would give you some simple to follow instructions
+to make life easier. Well, there's the [Lit Getting Started](https://lit.dev/docs/getting-started/) page, but since you're here, lets assume you'd prefer me to walk you
+through it, or you're after a less "clinical" approach to setting up a project.
+
+## Project Setup
+First things first, we're going to want a project to work in. So,
+```bash
+$ mkdir lit-component-project
+
+$ cd lit-component-project
+
+$ npm init
+
+$ npm i vite lit typescript
+```
+We make a folder (you can replace `lit-component-project` with whatever floats your boat right now), `cd` into it, `init` an npm project in that folder, and install a few key dependencies.
+
+- `vite` - this is our build tool, almost zero config, simple, fast, modern, I wouldn't use anything else nowadays to be honest  ([vite docs](https://vitejs.dev/))
+- `lit` - this is where all the `lit` code lives, we need this to write anything in `lit`
+- `typescript` - let's be honest here, Types are Good™. I don't write Javascript anymore, only Typescript, and so we'll be using Typescript here
+
+Then you'll want to make a few files:
+{% endrenderTemplate %}
+
+<playground-project id="starter-project">
+  <script type="sample/html" filename="index.html">
+    <!doctype html>
+    <head>
+      <script type="module" src="./index.js">&lt;/script>
+    </head>
+    <my-lit-component></my-lit-component>
+  </script>
+  <script type="sample/ts" filename="index.ts">
+import { LitElement, html } from 'lit'
+import { customElement } from 'lit/decorators.js'
+
+@customElement('my-lit-component')
+export class MyLitComponent extends LitElement {
+  render () {
+    return html`<span>Hello, World!</span>`
+  }
+}
+  </script>
+</playground-project>
+<playground-tab-bar project="starter-project" editor="starter-editor"></playground-tab-bar>
+<playground-file-editor id="starter-editor" project="starter-project" line-numbers read-only></playground-file-editor>

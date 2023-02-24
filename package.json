@@ -10,21 +10,29 @@
     "benchmark": "cross-env DEBUG=Eleventy:Benchmark* eleventy"
   },
   "devDependencies": {
-    "@11ty/eleventy": "2.0.0-beta.2",
-    "@11ty/eleventy-img": "^2.0.1",
+    "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy-img": "^3.0.0",
     "@11ty/eleventy-navigation": "^0.3.5",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
     "@sardine/eleventy-plugin-tinycss": "^2.0.0",
+    "@web/rollup-plugin-import-meta-assets": "^1.0.7",
     "cross-env": "^7.0.3",
     "eleventy-plugin-reading-time": "^0.0.1",
-    "eslint": "^8.33.0",
+    "eleventy-plugin-rollup": "^1.3.0",
+    "eslint": "^8.34.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
     "luxon": "^3.2.1",
-    "markdown-it-anchor": "^8.6.6",
+    "markdown-it-anchor": "^8.6.7",
+    "rollup": "^3.17.2",
     "toc-extract": "^1.1.0"
+  },
+  "dependencies": {
+    "playground-elements": "^0.17.0"
   }
 }

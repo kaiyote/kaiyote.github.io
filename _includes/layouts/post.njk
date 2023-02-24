@@ -20,11 +20,7 @@ layout: layouts/base.njk
 
 {{ content | safe }}
 
-<ul class="post-footnotes">
-  {%- for footnote in footnotes %}
-  <li>{{ footnote | safe }}</li>
-  {%- endfor %}
-</ul>
+<ul class="post-footnotes">{%- for footnote in footnotes %}<li>{{ footnote | safe }}</li>{%- endfor %}</ul>
 
 {%- if collections.posts %}
 {%- set previousPost = collections.posts | getPreviousCollectionItem %}
@@ -35,4 +31,8 @@ layout: layouts/base.njk
   {%- if nextPost %}<li>Next: <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a></li>{% endif %}
 </ul>
 {%- endif %}
+{%- endif %}
+
+{%- if playground %}
+{% rollup 'assets/playground.js' | url %}
 {%- endif %}

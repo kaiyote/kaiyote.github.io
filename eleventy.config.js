@@ -1,12 +1,7 @@
 const markdownItAnchor = require('markdown-it-anchor')
-
-const pluginRss = require('@11ty/eleventy-plugin-rss')
-const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
-const pluginNavigation = require('@11ty/eleventy-navigation')
-const { EleventyHtmlBasePlugin } = require('@11ty/eleventy')
-const tocExtract = require('toc-extract/plugins/eleventy')
-const readingTime = require('eleventy-plugin-reading-time')
-const tinyCSS = require('@sardine/eleventy-plugin-tinycss')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
+const { importMetaAssets } = require('@web/rollup-plugin-import-meta-assets')
+const terser = require('@rollup/plugin-terser')
 
 module.exports = function (eleventyConfig) {
   // Copy the contents of the `public` folder to the output folder
@@ -32,13 +27,22 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(require('./eleventy-config/helper-filters.js'))
 
   // Official plugins
-  eleventyConfig.addPlugin(pluginRss)
-  eleventyConfig.addPlugin(pluginSyntaxHighlight)
-  eleventyConfig.addPlugin(pluginNavigation)
-  eleventyConfig.addPlugin(EleventyHtmlBasePlugin)
-  eleventyConfig.addPlugin(tocExtract)
-  eleventyConfig.addPlugin(readingTime)
-  eleventyConfig.addPlugin(tinyCSS)
+  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-rss'))
+  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-syntaxhighlight'))
+  eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'))
+  eleventyConfig.addPlugin(require('@11ty/eleventy').EleventyHtmlBasePlugin)
+  eleventyConfig.addPlugin(require('toc-extract/plugins/eleventy'))
+  eleventyConfig.addPlugin(require('eleventy-plugin-reading-time'))
+  eleventyConfig.addPlugin(require('@sardine/eleventy-plugin-tinycss'))
+  eleventyConfig.addPlugin(require('eleventy-plugin-rollup'), {
+    rollupOptions: {
+      output: {
+        format: 'es',
+        dir: '_site/js'
+      },
+      plugins: [nodeResolve(), importMetaAssets(), terser()]
+    }
+  })
 
   // Customize Markdown library settings:
   eleventyConfig.amendLibrary('md', mdLib => {

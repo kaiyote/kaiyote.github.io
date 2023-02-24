@@ -28,32 +28,22 @@
     <meta property="twitter:description" content="{{ description or metadata.description }}">
     <meta property="twitter:image" content="{{ '/img/toplogo.jpeg' | htmlBaseUrl(metadata.url) }}">
 
-{#-
-    Choices for CSS:
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    1. External files (best with local dev server live reload)
-
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/message-box.css">
-    <link rel="stylesheet" href="/css/prism-okaidia.css">
-    <link rel="stylesheet" href="/css/prism-diff.css">
-
-    2. Inlined (fastest site performance in production)
-#}
+    {% if eleventy.env.runMode === "serve" %}
+    <link rel="stylesheet" href="/../public/css/index.css">
+    <link rel="stylesheet" href="/../public/css/message-box.css">
+    <link rel="stylesheet" href="/../public/css/code-colors.css">
+    {% else %}
     <style>
     {% include "public/css/index.css" %}
     {% include "public/css/message-box.css" %}
-    {% include "node_modules/prismjs/themes/prism-okaidia.css" %}
-    {% include "public/css/prism-diff.css" %}
+    {% include "public/css/code-colors.css" %}
     </style>
-{#
-    3. You could even swap between the two methods above using {% if eleventy.env.runMode === "serve" %}
-    4. Concatenate CSS to one file (site performance is slower than 2 but faster than 1):
-        https://www.11ty.dev/docs/quicktips/concatenate/
-    5. Use a bundler
-        e.g. Vite https://www.11ty.dev/docs/server-vite/
-        Or search for additional community plugins for esbuild, rollup, webpack, etc.
-#}
+    {% endif %}
+
   </head>
   <body>
     <a href="#skip" class="visually-hidden" tabindex="-1">Skip to main content</a>
