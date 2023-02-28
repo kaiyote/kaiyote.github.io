@@ -34,6 +34,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(require('toc-extract/plugins/eleventy'))
   eleventyConfig.addPlugin(require('eleventy-plugin-reading-time'))
   eleventyConfig.addPlugin(require('@sardine/eleventy-plugin-tinycss'))
+  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-inclusive-language'), {
+    templateFormats: ['md', 'njk']
+  })
   eleventyConfig.addPlugin(require('eleventy-plugin-rollup'), {
     rollupOptions: {
       output: {

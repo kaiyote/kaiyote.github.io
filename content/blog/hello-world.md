@@ -13,7 +13,7 @@ footnotes:
 So, I was thinking about what I could write as my first blog post, and it hit me.
 Get ChatGPT to write a component in lit, and then point and laugh at it.
 
-So, let's do just that:
+So, let's do precisely that:
 
 ## The Experiment
 {% gpt "question" %}
@@ -44,8 +44,8 @@ and updates the count displayed on the button every time it is clicked.
 {% endgpt %}
 
 So...... first things first. It spit out a `react` component when I asked for a `lit` component.
-Now, to be fair, I'm 90% positive that react component would do the thing I asked for the component to do.
-Just, in react. Which sort of belies the entire weakness of ChatGPT.
+Now to be fair, I'm 90% positive that `react` component would do the thing I asked for the component to do.
+The problem is that I asked it to write the component in `lit`. Which sort of belies the entire weakness of ChatGPT.
 
 {% gpt "question" %}
 I asked you to write a component in Lit
@@ -80,7 +80,7 @@ that would actually run "correctly", but there are still quite a number of issue
 1. `lit-element` has been deprecated since 2021 (as it admitted to me after I corrected it after the third example here), and will yell at you in the browser for importing from it.
 2. It specified the `count` as a `@property`. Now, depending on your mood this could be perfectly fine. You could want to expose the `count` prop to the consuming application to allow
 it to be set from the outside and then incremented internally as normal. Heck, it even caught that it needed to give `lit` the type hint so that it would be parsed correctly across the
-web-component boundary. However, this is not what I was after (and also isn't functionally identical to the react component)
+web-component boundary. Unfortunately, this is not what I was after (and also isn't functionally identical to the react component)
 
 So, I offered more guidance towards my desired end goal.
 
@@ -117,7 +117,7 @@ version in lit that used the `@state` decorator for `count` to produce an intern
 is that it did not put the function call parens after the state decorator, rendering the Typescript invalid.
 
 After this, I informed it that `lit-element` had been deprecated, and it cobbled together a nearly vanilla JS web-component using `html` and `render` from `lit-html` to handle the rendering,
-but it entirely lost the reactive re-rendering that `lit` gives you for free. When I then pointed out that it could just be using the `lit` npm package and not have to mess with vanilla JS
+but it entirely lost the reactive re-rendering that `lit` gives you for free. When I then pointed out that it should be using the `lit` npm package and not have to mess with vanilla JS
 web-components, it spit out the last variant before I gave up.
 
 {% gpt "answer" %}
@@ -150,10 +150,10 @@ Here, it imports the non-existant `Component` class from `lit`, extends it, and 
 And again, `Component` is not a thing that has ever been exported from any `lit-*` package, so this code wouldn't actually compile in the first place.
 
 ## The TL;DR;
-I think, for right now at least, Front End devs are safe from ChatGPT. It clearly almost kind of understands what you're asking it, sometimes, but the code it spits back looks
-like a Freshman in Software Dev 101 got the task, asked google, and just copied and pasted in the first hit it got that looked almost correct. The more I tried to correct or steer
-ChatGPT into giving the output I truly desired, the more confused it became. Is this probably partially my fault for being terrible at prompt engineering? Almost certainly yes. However,
-that just exposes another weakness. If ChatGPT will truly consume dev jobs in the future, we'll still be fine, since we'll just be "developing" in ChatGPT, gently massaging prompts to get
+I think, for right now at least, Front End devs are safe from ChatGPT. It definitely almost kind of understands what you're asking it, sometimes, but the code it spits back looks
+like a Freshman in Software Dev 101 got the task, asked google, and copied and pasted in the first hit it got that looked almost correct. The more I tried to correct or steer
+ChatGPT into giving the output I truly desired, the more confused it became. Is this probably partially my fault for being terrible at prompt engineering? Almost certainly yes.
+That exposes another weakness, though. If ChatGPT will truly consume dev jobs in the future, we'll still be fine, since we'll be "developing" in ChatGPT, gently massaging prompts to get
 it to spit out what we want in a shape we desire.
 
 But the longer you think about it, the more you realize that if the person engineering the ChatGPT prompt to get correctly shaped output is already required to know what that correctly shaped
