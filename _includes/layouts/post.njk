@@ -34,5 +34,9 @@ layout: layouts/base.njk
 {%- endif %}
 
 {%- if playground %}
-{% rollup 'assets/playground.js' | url %}
+  {%- if preview %}
+  {% rollup 'assets/playground-full.js' | url %}
+  {%- else %}
+  {% rollup 'assets/playground.js' | url %}
+  {%- endif %}
 {%- endif %}

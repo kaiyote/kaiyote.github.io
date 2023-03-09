@@ -17,20 +17,24 @@ module.exports = eleventyConfig => {
     `
   })
 
-  eleventyConfig.addPairedShortcode('playground', function (content, projectName = 'playground', entrypointFile = 'index.ts', demoTag = '<my-lit-component></my-lit-component>') {
-    return `
-      <playground-project id="${projectName}-project">
-        <script type="sample/html" filename="index.html">
-          <!doctype html>
-          <head>
-            <script type="module" src="./${entrypointFile}">&lt;/script>
-          </head>
-          ${demoTag}
-        </script>
-        ${content}
-      </playground-project>
-      <playground-tab-bar project="${projectName}-project" editor="${projectName}-editor"></playground-tab-bar>
-      <playground-file-editor id="${projectName}-editor" project="${projectName}-project" line-numbers readonly></playground-file-editor>
-    `
-  })
+  eleventyConfig.addPairedShortcode('playground',
+    function (content, projectName = 'playground', entrypointFile = 'index', demoTag = 'my-lit-component', includePreview = false, cssFile = undefined) {
+      return `
+        <playground-project id="${projectName}-project">
+          <script type="sample/html" filename="index.html">
+            <!doctype html>
+            <head>
+              <script type="module" src="./${entrypointFile}.${includePreview ? 'js' : 'ts'}">&lt;/script>
+              ${cssFile && `<link rel="stylesheet" href="./${cssFile}">`}
+            </head>
+            <${demoTag}></${demoTag}>
+          </script>
+          ${content}
+        </playground-project>
+        <playground-tab-bar project="${projectName}-project" editor="${projectName}-editor"></playground-tab-bar>
+        <playground-file-editor id="${projectName}-editor" project="${projectName}-project" line-numbers readonly></playground-file-editor>
+        ${includePreview ? `<playground-preview project="${projectName}-project"></playground-preview>` : ''}
+      `.trim()
+    }
+  )
 }
