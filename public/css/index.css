@@ -153,6 +153,7 @@ header {
   flex-wrap: wrap;
   align-items: center;
   padding: 1em;
+  width: 100%;
 }
 .home-link {
   font-size: 1em; /* 16px /16 */
@@ -164,17 +165,24 @@ header {
 }
 
 /* Nav */
-.nav {
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 0 auto;
+}
+
+.nav, .feeds {
   display: flex;
   padding: 0;
   margin: 0;
   list-style: none;
 }
-.nav-item {
+.nav-item, .feed-item {
   display: inline-block;
   margin-right: 1em;
 }
-.nav-item a[href]:not(:hover) {
+.nav-item a[href]:not(:hover),
+.feed-item a[href]:not(:hover) {
   text-decoration: none;
 }
 .nav a[href][aria-current="page"] {
@@ -302,7 +310,7 @@ h2 + .header-anchor {
 .header-wrapper {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   gap: 0.5em;
 }

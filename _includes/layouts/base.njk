@@ -52,12 +52,16 @@
       <a href="/" class="home-link">{{ metadata.title }}</a>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <nav aria-labelledby="top-level-label">
+      <nav aria-labelledby="top-level-label" class="top-nav">
         <h2 class="visually-hidden" id="top-level-label">Top level navigation menu</h2>
         <ul class="nav">
         {%- for entry in collections.all | eleventyNavigation %}
           <li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
         {%- endfor %}
+        </ul>
+        <ul class="feeds">
+          <li class="feed-item"><a href="/feed/feed.xml" title="Atom Feed" download>Atom / RSS</a></li>
+          <li class="feed-item"><a href="/feed/feed.json" title="JSON Feed" download>JSON Feed</a></li>
         </ul>
       </nav>
     </header>
