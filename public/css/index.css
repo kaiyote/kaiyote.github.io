@@ -146,6 +146,16 @@ code {
   word-break: normal;
 }
 
+code:not([class*="language-"]) {
+  background: var(--color-gray-20);
+}
+
+@media (prefers-color-scheme: dark) {
+  code:not([class*="language-"]) {
+    background: var(--playground-tab-bar-background);
+  }
+}
+
 /* Header */
 header {
   display: flex;

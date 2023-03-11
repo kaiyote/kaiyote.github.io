@@ -1,12 +1,11 @@
 ---
 title: Building a Simple Lit Component
 description: Lets walk through building a simple Lit component, perhaps even the one I asked ChatGPT to write in the previous post, and cover all the basics of why I like Lit.
-date: git Created
+date: '2023-03-11'
 tags:
   - lit
   - web-components
   - web-dev
-draft: true
 playground: true
 preview: true
 ---
@@ -94,14 +93,13 @@ To recap, what we're after is the following:
 3. and displays that somehow
 
 ## Even More Code
-Here's a simple way to achieve exactly that (ignore that the html references a `.js` file, this is only to work w/ the `playground-*` components for
-live code, in a standard `vite` project you would reference the actual filename of your entrypoint file):
+Here's a simple way to achieve exactly that:
 {% endrenderTemplate %}
 
-{% playground undefined, undefined, 'my-counter-component', true, 'index.css' %}
+{% playground undefined, 'index.js', 'my-counter-component', true, 'index.css' %}
   <script type="sample/ts" filename="index.ts">
 import { css, LitElement, html } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 
 @customElement('my-counter-component')
 export class MyCounterComponent extends LitElement {
@@ -120,16 +118,23 @@ export class MyCounterComponent extends LitElement {
 
   @state() count = 0
 
+  @property() name = 'Random Visitor'
+
   render () {
     return html`
       <button class='click-counter-button' part='button' @click=${() => { this.count += 1 }}>
-        This button has been clicked ${this.count} times
+        This button has been clicked ${this.count} times by ${this.name}
       </button>
     `
   }
 }
   </script>
   <script type="sample/css" filename="index.css">
+  my-counter-component::part(button) {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+  }
+
   my-counter-component::part(button):hover {
     background-color: lightblue;
   }
@@ -138,4 +143,42 @@ export class MyCounterComponent extends LitElement {
 
 {% renderTemplate 'md' %}
 ## The Whole Explanation
+
+You've seen the `index.html` before, so ignore that it's importing `index.js` instead of `index.ts`. That's a function of using the `playground-ide` for these live code demos.
+In a standard `vite` project you'd import `index.ts` like normal. There's a css file here too, but we'll get to that later.
+
+All the magic happens in `index.ts`.
+
+First up, there's the `@customElement` decorator. You could `customElement.define('tag-name', constructor)`, but the `lit` `@customElement` decorator
+does that for you, and in a nicer fashion than having to remember to call `customElement.define`.
+
+After that is the `static styles` property, with the `css` tagged template function.
+This takes straight css, and applies it to every instance of this custom element via a shared style sheet. This means there's only 1 copy of these styles in the browsers memory at a given time,
+and is far more efficient than inlining a style tag inside of your component. `static styles` can also be an array of multiple `CSSResults`, so you could define some css that is common to all of
+your components in another file, import it into each component and apply it via the `static styles`. It really is straight, normal css though. The one "new" thing to note is the `:host` selector,
+which targets the `my-counter-component` element in this case, but in general is the root element of your custom element (the tag right outside of the shadow dom). Note that any styles applied to `:host`
+are overridable from the outside, because they exist outside of the shadow dom.
+
+Next come the `@state` and `@property`. These both do nearly the same thing, with the only real difference being `@state` is internal, and `@property` is external (and provides the ability to set the property
+from the outside via either an attribute or the property). Try editing the html above and providing the `name` property on the `my-counter-component`. These both set up machinery, so that when they are set or
+modified, `lit` knows that it needs to rerender (and it's smart enough to batch the updates if a bunch of them happen in a burst).
+
+Finally there's the `render` function. This returns the actual contents of the component via the `html` tagged template. This takes, you guessed it, straight up html. Attributes are bound as normal,
+properties can be bound directly (for rendering nested components and whatnot) by prefixing the name of the thing with a `.` (a period), boolean attributes can be present or removed by prefixing them with `?`
+(a question mark), and event listeners can be bound with an `@` (an at-sign). Since this is a tagged template string, you can also use normal template string mechanics to template in whatever you feel like.
+
+Event handlers are a little special in that you bind them directly to functions. You can either pass an inline arrow function, or you can pass a reference to an instance function via `this.functionName`. Here,
+the code binds a simple arrow function since all its doing is incrementing the count state by one. As mentioned before, this will trigger a re-render.
+
+The final thing you might've noticed is that `part` attribute. This is part of the web component spec. Shadow DOM hides the internals of a web component from the outside, and prevents styles from leaking in
+or otherwise being applied to elements inside the web component. `CSS Parts` let you expose specific peices of your component to the outside, in an almost `api-like` fashion. [You can read more about `CSS Parts` here](https://developer.mozilla.org/en-US/docs/Web/CSS/::part)
+but they don't allow access to a part's children, or siblings, but do allow access to pseudo-elements on the matching parts. You style them from the outside by using the `::part(part-name)` pseudo selector on the custom element tag name or a selector
+that matches the custom element. In this example, I increased the padding and font of the button as well as giving it a hover effect, and all from outside the component itself.
+
+## The Wrap Up
+Hopefully you should be able to see that making, using, and sharing components in `Lit` is quite simple. There's almost no boilerplate to a component, styling and rendering is super simple, and `lit` handles all the heavy lifting
+of wiring up attributes, listening for changes to trigger a re-render, efficiently binding event listeners and so much more.
+
+This post has only scratched the surface of the world of `lit` components, and if you're interested I would absolutely recommend going to [lit.dev](lit.dev) and reading through the docs there. They're super helpful, and they have
+a number of live examples using the exact same technology that I've used here (the `playground-ide` components I'm using here were written in `lit`, presumably for the original purpose of having a way to demo `lit` live on the web.)
 {% endrenderTemplate %}

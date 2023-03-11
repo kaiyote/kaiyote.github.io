@@ -4,35 +4,65 @@
   --playground-code-padding: 0;
   --playground-code-line-height: 1.4em;
 
-  --playground-code-background: #1e1e1e;
-  --playground-code-default-color: #d4d4d4;
-  --playground-code-keyword-color: #569cd6;
-  --playground-code-atom-color: #569cd6;
-  --playground-code-number-color: #b5cea8;
-  --playground-code-def-color: #9cdcfe;
-  --playground-code-variable-color: #9cdcfe;
-  --playground-code-property-color: #9cdcfe;
-  --playground-code-operator-color: #569cd6;
-  --playground-code-variable-2-color: #9cdcfe;
-  --playground-code-variable-3-color: #d7ba7d;
-  --playground-code-type-color: #4ec9b0;
-  --playground-code-comment-color: #6a9955;
-  --playground-code-string-color: #ce9178;
-  --playground-code-string-2-color: #ce9178;
-  --playground-code-meta-color: #569cd6;
-  --playground-code-qualifier-color: #d7ba7d;
-  --playground-code-builtin-color: #d7ba7d;
-  --playground-code-tag-color: #569cd6;
-  --playground-code-attribute-color: #9cdcfe;
-  --playground-code-callee-color: #dcdcaa;
+  --playground-code-background: #ffffff;
+  --playground-code-default-color: #3b3b3b;
+  --playground-code-keyword-color: #0000ff;
+  --playground-code-atom-color: #0000ff;
+  --playground-code-number-color: #098658;
+  --playground-code-def-color: #001080;
+  --playground-code-variable-color: #001080;
+  --playground-code-property-color: #001080;
+  --playground-code-variable-2-color: #001080;
+  --playground-code-variable-3-color: #3b3b3b;
+  --playground-code-type-color: #267f99;
+  --playground-code-comment-color: #008000;
+  --playground-code-string-color: #a31515;
+  --playground-code-string-2-color: #a31515;
+  --playground-code-meta-color: #3b3b3b;
+  --playground-code-qualifier-color: #800000;
+  --playground-code-builtin-color: #800000;
+  --playground-code-tag-color: #800000;
+  --playground-code-attribute-color: #e50000;
+  --playground-code-callee-color: #795e26;
 
   --playground-code-linenumber-color: var(--playground-code-default-color);
-  --playground-code-selection-background: #264f78;
-  --playground-highlight-color: #569cd6;
+  --playground-code-selection-background: #b3c9dc;
+  --playground-highlight-color: #89b9e6;
 
-  --playground-tab-bar-background: #2d2d2d;
-  --playground-tab-bar-foreground-color: #ffffff;
-  --playground-tab-bar-active-background: var(--playground-code-background);
+  --playground-tab-bar-active-color: var(--playground-code-property-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --playground-code-background: #1e1e1e;
+    --playground-code-default-color: #d4d4d4;
+    --playground-code-keyword-color: #569cd6;
+    --playground-code-atom-color: #569cd6;
+    --playground-code-number-color: #b5cea8;
+    --playground-code-def-color: #9cdcfe;
+    --playground-code-variable-color: #9cdcfe;
+    --playground-code-property-color: #9cdcfe;
+    --playground-code-operator-color: #569cd6;
+    --playground-code-variable-2-color: #9cdcfe;
+    --playground-code-variable-3-color: #d7ba7d;
+    --playground-code-type-color: #4ec9b0;
+    --playground-code-comment-color: #6a9955;
+    --playground-code-string-color: #ce9178;
+    --playground-code-string-2-color: #ce9178;
+    --playground-code-meta-color: #569cd6;
+    --playground-code-qualifier-color: #d7ba7d;
+    --playground-code-builtin-color: #d7ba7d;
+    --playground-code-tag-color: #569cd6;
+    --playground-code-attribute-color: #9cdcfe;
+    --playground-code-callee-color: #dcdcaa;
+
+    --playground-code-selection-background: #264f78;
+    --playground-highlight-color: #569cd6;
+
+    --playground-tab-bar-background: #2d2d2d;
+    --playground-tab-bar-foreground-color: #ffffff;
+    --playground-tab-bar-active-background: var(--playground-code-background);
+  }
 }
 
 code[class*="language-"],
