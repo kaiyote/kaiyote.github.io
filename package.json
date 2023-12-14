@@ -35,5 +35,8 @@
   },
   "dependencies": {
     "playground-elements": "^0.18.1"
+  },
+  "optionalDependencies": {
+    "lightningcss-linux-x64-gnu": "1.22.1"
   }
 }
