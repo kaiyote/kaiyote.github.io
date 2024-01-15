@@ -70,7 +70,11 @@
       {{ content | safe }}
     </main>
 
-    <footer>© {% copyYear %}</footer>
+    <footer>
+      <p>© {% copyYear %}</p>
+      <p>Powered by <a href="https://www.11ty.dev/" target="_blank">Eleventy</a></p>
+      <p>Hosted on <a href="https://github.com/kaiyote/kaiyote.github.io/" target="_blank">Github</a></p>
+    </footer>
 
     <!-- Current page: {{ page.url | htmlBaseUrl }} -->
   </body>

@@ -51,8 +51,8 @@ The problem is that I asked it to write the component in `lit`. Which sort of be
 I asked you to write a component in Lit
 {% endgpt %}
 {% gpt "answer" %}
-{% renderTemplate "md" %}
 I apologize for the confusion, here's an example of a Lit component written in TypeScript that counts how many times it has been clicked and displays that:
+{% renderTemplate "md" %}
 ```ts
 import { LitElement, html, customElement, property } from 'lit-element'
 
@@ -69,9 +69,9 @@ class ClickCounter extends LitElement {
   }
 }
 ```
+{% endrenderTemplate %}
 This component uses the `@customElement` decorator to define the name of the custom element and the `@property` decorator to define a property for the count.
 The `render` method uses a template literal to create the button element and binds an event listener to the `click` event. The listener increments the count property each time the button is clicked.
-{% endrenderTemplate %}
 {% endgpt %}
 
 After I corrected it, the next batch of code it spit out is, I believe, the only example (and there were more after the three I documented here)
@@ -88,11 +88,11 @@ So, I offered more guidance towards my desired end goal.
 Why are you allowing `count` to be passed in from the outside? It is entirely internal to the component, wouldn't it be better to use `@state` instead?
 {% endgpt %}
 {% gpt "answer" %}
-{% renderTemplate "md" %}
 You are correct, the `count` property should be internal state of the component and should not be passed in from the outside. In this case, it would be better to use the `@state` decorator instead of
 the `@property` decorator to define the `count` variable. The @state decorator will automatically handle the re-rendering and updating of the component when the state changes.
 
 Here's an example of the component with the `count` variable defined as a state:
+{% renderTemplate "md" %}
 ```ts
 import { LitElement, html, customElement, state } from 'lit-element'
 
@@ -122,7 +122,7 @@ web-components, it spit out the last variant before I gave up.
 
 {% gpt "answer" %}
 {% renderTemplate "md" %}
-```js
+```ts
 import { Component, html } from 'lit'
 
 class ClickCounter extends Component {

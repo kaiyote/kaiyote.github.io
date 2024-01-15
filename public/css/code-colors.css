@@ -8,13 +8,13 @@
   --playground-code-default-color: #3b3b3b;
   --playground-code-keyword-color: #0000ff;
   --playground-code-atom-color: #0000ff;
-  --playground-code-number-color: #098658;
+  --playground-code-number-color: #076643;
   --playground-code-def-color: #001080;
   --playground-code-variable-color: #001080;
   --playground-code-property-color: #001080;
   --playground-code-variable-2-color: #001080;
   --playground-code-variable-3-color: #3b3b3b;
-  --playground-code-type-color: #267f99;
+  --playground-code-type-color: #0f37e9;
   --playground-code-comment-color: #008000;
   --playground-code-string-color: #a31515;
   --playground-code-string-2-color: #a31515;
@@ -22,8 +22,8 @@
   --playground-code-qualifier-color: #800000;
   --playground-code-builtin-color: #800000;
   --playground-code-tag-color: #800000;
-  --playground-code-attribute-color: #e50000;
-  --playground-code-callee-color: #795e26;
+  --playground-code-attribute-color: #B60000;
+  --playground-code-callee-color: #6E5523;
 
   --playground-code-linenumber-color: var(--playground-code-default-color);
   --playground-code-selection-background: #b3c9dc;
@@ -34,7 +34,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --playground-code-background: #1e1e1e;
+    --playground-code-background: #020202;
     --playground-code-default-color: #d4d4d4;
     --playground-code-keyword-color: #569cd6;
     --playground-code-atom-color: #569cd6;
@@ -63,6 +63,12 @@
     --playground-tab-bar-foreground-color: #ffffff;
     --playground-tab-bar-active-background: var(--playground-code-background);
   }
+}
+
+playground-preview,
+playground-file-editor {
+  border: 1px solid black;
+  border-top: none;
 }
 
 code[class*="language-"],
