@@ -18,7 +18,7 @@ module.exports = eleventyConfig => {
   })
 
   eleventyConfig.addPairedShortcode('playground',
-    function (content, projectName = 'playground', entrypointFile = 'index.ts', demoTag = 'my-lit-component', includePreview = false, cssFile = undefined) {
+    function (content, projectName = 'playground', entrypointFile = 'index.ts', demoTag = 'my-lit-component', includePreview = false, cssFile = undefined, secondaryDemoTag = undefined) {
       return `
         <playground-project id="${projectName}-project">
           <script type="sample/html" filename="index.html">
@@ -28,6 +28,7 @@ module.exports = eleventyConfig => {
               ${cssFile ? `<link rel="stylesheet" href="./${cssFile}">` : ''}`.trim()}
             </head>
             <${demoTag}></${demoTag}>
+            ${secondaryDemoTag ? `<${secondaryDemoTag}></${secondaryDemoTag}>` : ''}
           </script>
           ${content}
         </playground-project>

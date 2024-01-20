@@ -1,0 +1,161 @@
+---
+title: Comparing Lit and FAST
+description: It is hopefully clear that I'm a fan of Lit. But there's also FAST, and a cursory glance suggests they're very similar to build components in.
+  Lets see how they compare and contrast with each other. As should be expected, we'll be building
+date: '2024-01-20'
+tags:
+  - lit
+  - FAST
+  - web-components
+  - web-dev
+playground: true
+preview: true
+---
+{% renderTemplate 'md' %}
+## Introduction (or the rambling before the code)
+So, we've all seen Lit. Or at very least if you've read the other posts on this blog you have. Speaking of which, apparently this is only a yearly thing for me.
+Time flies when you stop paying attention to the blog you started on a whim.
+
+But, presumably if you're here, you've seen Lit before. Its pretty much the only thing this blog talks about and if you found it, you almost certainly searched for
+something about Lit, scrolled through 5 pages of Google results because I'm bad at SEO, and then deigned to click on this blog of all things.
+
+But what is this FAST thing that's in the title? Why am I talking about a thing that's not Lit. Because learning new things is what keeps me going. Even if I never
+use the technology or whatever it is ever again, the act of learning it will have irreparably altered my thought patterns and will allow me to think of new, better,
+or at least more creative, ways to solve problems with the tools I do use, and that is the kind of thing that gets me up in the morning when its 20 degrees Farenheit
+and my bed is warm and cozy but I have work to do or something.
+
+So, on with the code!
+
+## The Code
+
+Click around, look through the code. The Lit version is in `lit-counter.ts` while the FAST version is in `fast-counter.ts`.
+You should also be able to edit the `index.html`. Try adding a `name` attribute to each of the two components and see how they
+react.
+{% endrenderTemplate %}
+
+{% playground undefined, 'index.js', 'lit-counter-component', true, undefined, 'fast-counter-component' %}
+  <script type="sample/ts" filename="index.ts">
+import './lit-counter.js'
+import './fast-counter.js'
+  </script>
+  <script type="sample/ts" filename="lit-counter.ts">
+import { css, LitElement, html } from 'lit'
+import { customElement, property, state } from 'lit/decorators.js'
+
+@customElement('lit-counter-component')
+export class LitCounterComponent extends LitElement {
+  static styles = css`
+    :host {
+      margin: 1rem;
+      display: block;
+    }
+
+    .click-counter-button {
+      border: 1px solid blue;
+      border-radius: 5px;
+    }
+  `
+
+  @state() count = 0
+
+  @property() name = 'Random Visitor'
+
+  render () {
+    return html`
+      <button class='click-counter-button' part='button' @click=${() => { this.count += 1 }}>
+        This Lit button has been clicked ${this.count} times by ${this.name}
+      </button>
+    `
+  }
+}
+  </script>
+  <script type="sample/ts" filename="fast-counter.ts">
+import { FASTElement, customElement, observable, html, attr, css } from '@microsoft/fast-element'
+
+const template = html<FastCounterComponent>`
+  <button class='click-counter-button' part='button' @click=${x => { x.count += 1 }}>
+    This FAST button has been clicked ${x => x.count} times by ${x => x.name}
+  </button>
+`
+
+const styles = css`
+  :host {
+    margin: 1rem;
+    display: block;
+  }
+
+  .click-counter-button {
+    border: 1px solid red;
+    border-radius: 5px;
+  }
+`
+
+@customElement({ name: 'fast-counter-component', template, styles })
+export class FastCounterComponent extends FASTElement {
+  @observable count = 0
+
+  @attr name = 'Random Visitor'
+}
+  </script>
+{% endplayground %}
+
+{% renderTemplate 'md' %}
+## Pointing at the Code with Words
+
+To be honest, there's not as many differences as I was expecting trying to build the same thing between two different frameworks.
+Doing this exercise and comparing, say, React and Vue or Angular, the differences would be vast and complete. Here, its mostly
+the structure of the file.
+
+## Defining the Look and Feel
+Starting with the Lit component, the first obvious difference between it and its FAST counter part is that everything is contained
+within the class definition. It has a `render` function that returns the html tagged template, and a `static styles` property that
+holds the css tagged template. In the FAST component, by contrast, both the template and the styles are defined externally to the
+class, and linked via the decorator that also registers the class as a web-component (much like the customElement decorator in Lit does).
+
+I'm.... unsure how I feel about this difference. On the one hand, it makes any thing templated into the template or styles (I assume you
+can template inside of the styles) much more verbose in the FAST implemention, since the template is apparently always a function that gets
+passed the instance of the component its dealing with, and then you access everything from there. Compare this to the Lit version where the
+template has access to `this` by virtue of existing inside of the class it is providing the template for.
+
+In practice, this probably makes it far easier to have reuseable chunks of html and/or css in a FAST library that you can sprinkle
+into your component templates. You can do a similar thing in Lit, but you'd most likely be writing custom Directives or Controllers to provide
+the same functionality, so I'll give a small win to FAST for this one.
+
+## Reactivity
+Accepting properties and/or attributes, and maintaining internal reactive state is relatively similar between the two, with only semantic
+differences. While Lit prefers `property` and `state` for external inputs and internal reactive state, FAST goes with `attr` and `observable`.
+They amount to the same thing though, and its pretty one to one between them. Binding to events within the template is also the same, using
+the `@` before an event name to denote that as the event handler, and then letting you template in whatever you desire to handle. They both
+also have `?` prefixes for boolean attribute bindings in templates, but Lit uses a `.` prefix for js property binding, where FAST uses `:` in
+a move that reminds me of Vue, but causes no emotional change.
+
+In reading the docs, it does seem that FAST's `observable` is implemented rather differently from Lit's `state`, which may cause some confusion
+moving between the two, and to my eye it appears that Lit's `state` is more flexible, but they accomplish the same task in much the same way.
+
+Similarly, the `attr` and `property` decorators let you do things like rename the actual html attribute that gets watched compared to the name
+of the javascript property, or provide a custom convertor to convert between the html attribute string and its internal representation, and the api
+even looks effectively the same. In terms of reactivity, in my mind the two frameworks are effectively the same, and I can only imagine differences
+showing themselves when you start getting into weird esoteric shenanigans.
+
+## Actually using the library in a Code File
+This has always been a slightly irksome thing to me when using Lit. It splits out all of its directives in such a way that you have to import each
+directive separately from its individual file (and don't get me started on the fact that Lit forces you to type the `.js` extension on the end of
+every import). While this probably drastically simplifies tree shaking and helps keep the bundle size small, it does result in a lot of imports.
+
+FAST seems like it exports everything from the main `@microsoft/fast-element` (or at least enough of it that you can make a simple component with
+that one import), so it's got that going for it. To be honest, at this point I'm nit picking stylistic differences according to my personal
+homegrown code style preferences, so your mileage may vary.
+
+## The Ecosystem
+This is where FAST seems to have the largest lead on Lit. FAST seems to have entire other packages dedicated to things like `dependency injection`,
+`routing`, and `generic helper things`. Lit is mostly itself, and while it does have a great many more directives and useful decorators than
+vanilla `fast-element` does, and you can use any web-component library you might come across with ease in Lit (and FAST), I can only
+imagine what sort of things might exist in `fast-foundation` (the apparent helper package full of things and stuff). FAST seems designed to build
+apps with, and while you absolutely can build entire apps with Lit (look at the thing running the live code example, for example. It's written entirely
+in Lit as a collection of components) it seems like FAST might give you more help in that arena.
+
+## In Conclusion
+I still prefer Lit from a `highly personal code aesthetics` viewpoint. That being said, knowing there are other frameworks out there doing similar things is
+always a good thing. And thinking about how I might accomplish something in FAST might influence how I go about it in Lit. It'll be interesting to
+see where the two libraries end up, and what directions they each veer off in as they come into their own.
+{% endrenderTemplate %}
